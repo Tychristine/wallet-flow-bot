@@ -1,0 +1,19 @@
+[package]
+license = "MIT"
+name = "wallet-flow-bot"
+version = "0.2.0"
+edition = "2024"
+
+[dependencies]
+bs58 = "0.5.1"
+hex = "0.4.3"
+reqwest = { version = "0.13.4", features = ["json", "gzip"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1.0.150"
+sha2 = "0.11.0"
+teloxide = { version = "0.17.0", features = ["macros"] }
+tokio = { version = "1.52.3", features = ["full"] }
+chrono = "0.4.45"
+log = "0.4"
+env_logger = "0.11"
+mimalloc = "0.1"

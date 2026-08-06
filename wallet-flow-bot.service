@@ -1,0 +1,29 @@
+[Unit]
+Description=Wallet-flow-bot which monitor an account of Tron Network and Polgon Network
+Documentation=https://t.me/ankie
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nobody
+Group=nogroup
+WorkingDirectory=/opt/wallet_flow_bot
+ExecStart=/opt/wallet_flow_bot/wallet-flow-bot --c /opt/wallet_flow_bot/config.json
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wallet-flow-bot
+
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/wallet_flow_bot
+ReadOnlyPaths=/etc/ssl/certs
+
+Environment=RUST_LOG=error
+
+[Install]
+WantedBy=multi-user.target

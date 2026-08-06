@@ -1,0 +1,9 @@
+{
+    "rpc_url": "",
+    "api_key": "",
+    "target_address": "",
+    "bot_token": "",
+    "admin_id": "",
+    "polygon_rpc_url": "", //could be null if disable
+    "polygon_monitor_addresses": ""
+}
