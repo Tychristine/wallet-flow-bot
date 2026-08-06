@@ -1,5 +1,5 @@
 [Unit]
-Description=Wallet-flow-bot which monitor an account of Tron Network and Polgon Network
+Description=Wallet-flow-bot which monitor an account of Tron Network and Polygon Network
 Documentation=https://t.me/ankie
 After=network-online.target
 Wants=network-online.target

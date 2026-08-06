@@ -2,8 +2,6 @@
 
 Send a notification via Telegram bot when the wallet transfers USDT.
 
-(这是我自用的，纯AI)
-
 ## 支持的区块链网络
 
 - TRX/USDT on <https://tron.network/>
@@ -69,3 +67,7 @@ bash ./build.sh
 ## 联系我
 
 <https://t.me/foginside>
+
+## Preview
+
+![image](./preview01.png)
