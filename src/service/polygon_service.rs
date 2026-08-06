@@ -239,7 +239,7 @@ impl PolygonMonitor {
             let raw_amount = hex_to_u64(log["data"].as_str().unwrap_or("0x0"));
             let tx_hash = log["transactionHash"].as_str().unwrap_or("").to_string();
             // 跳过粉尘
-            if raw_amount < 0.001 as u64 {
+            if raw_amount < 1000 {
                 continue;
             }
 
