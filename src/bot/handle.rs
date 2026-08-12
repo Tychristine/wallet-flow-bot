@@ -21,7 +21,7 @@ pub async fn handle_start(
          /balance - 查询Tron资产\n\
          /verify <地址> - 验证Tron地址\n\
          /tron - 显示Tron地址\n\
-         /pol - 显示Tron地址",
+         /pol - 显示Polygon地址",
     )
     .await?;
     Ok(())
