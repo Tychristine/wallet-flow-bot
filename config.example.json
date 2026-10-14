@@ -5,6 +5,6 @@
     "bot_token": "",
     "admin_id": "",
     "polygon_rpc_url": "", //could be null if disable
-    "polygon_wss_url": "", //WSS 订阅地址(如 wss://polygon-bor-rpc.publicnode.com)，留空则使用轮询
+    "polygon_wss_url": "",
     "polygon_monitor_addresses": ""
 }
