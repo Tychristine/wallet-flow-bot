@@ -25,9 +25,6 @@ pub async fn start_bot_with(bot: Bot) {
                 Ok(Command::Start) => {
                     let _ = handle::handle_start(bot, msg).await;
                 }
-                Ok(Command::Balance) => {
-                    let _ = handle::handle_balance(bot, msg).await;
-                }
                 Ok(Command::Verify(address)) => {
                     let _ = handle::handle_verify(bot, msg, address).await;
                 }

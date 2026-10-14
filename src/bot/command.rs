@@ -6,8 +6,6 @@ use teloxide::utils::command::BotCommands;
 pub enum Command {
     #[command(description = "显示开始信息")]
     Start,
-    #[command(description = "查询Tron资产")]
-    Balance,
     #[command(description = "验证Tron地址")]
     Verify(String),
     #[command(description = "显示Tron地址")]

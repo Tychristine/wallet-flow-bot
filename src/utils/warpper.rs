@@ -1,12 +1,5 @@
 use chrono::{DateTime, FixedOffset};
 
-/// 除以sun单位(1m)，保留3个小数
-/// 主要用于TRX
-pub fn warpper_balance(value: i64) -> String {
-    let result: f64 = value as f64 / 1_000_000.0;
-    format!("{:.3}", result)
-}
-
 // 通用代币金额格式化
 pub fn format_token_amount(raw_value: i64, decimals: u32) -> String {
     if decimals == 0 {

@@ -7,7 +7,7 @@ use teloxide::types::{ChatId, Message, ParseMode};
 use crate::interface::account_interface;
 use crate::utils::account_convert::{base58_to_hex, hex_to_base58};
 use crate::utils::conf_util::Config;
-use crate::utils::warpper::{markdown_v2_escape, warpper_balance};
+use crate::utils::warpper::markdown_v2_escape;
 
 // 处理 /start 命令
 pub async fn handle_start(
@@ -18,48 +18,11 @@ pub async fn handle_start(
         msg.chat.id,
         "欢迎使用！\n\
          可用命令:\n\
-         /balance - 查询Tron资产\n\
          /verify <地址> - 验证Tron地址\n\
          /tron - 显示Tron地址\n\
          /pol - 显示Polygon地址",
     )
     .await?;
-    Ok(())
-}
-
-// 处理 /balance 命令
-pub async fn handle_balance(
-    bot: Bot,
-    msg: Message,
-) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-    let config = Config::get();
-    let admin_id = config.USERADMIN_ID.parse::<i64>().unwrap_or(0);
-    // 非管理员驳回Permission Denied
-    if msg.chat.id.0 != admin_id {
-        bot.send_message(msg.chat.id, "⛔ Permission Denied")
-            .await?;
-        return Ok(());
-    }
-    // 查询余额展示
-    let result = crate::service::account_service::get_balance().await;
-    match result {
-        Ok((balance, usdt_balance)) => {
-            let c_balance = warpper_balance(balance);
-            let num: i64 = usdt_balance.parse().unwrap_or(0);
-            let reply = format!(
-                "🔴 *TRX 余额*\n`{}`\n\n🟢 *USDT-TRC20 余额*\n`{}`",
-                markdown_v2_escape(&c_balance),
-                markdown_v2_escape(&warpper_balance(num)),
-            );
-            bot.send_message(msg.chat.id, reply)
-                .parse_mode(ParseMode::MarkdownV2)
-                .await?;
-        }
-        Err(e) => {
-            bot.send_message(msg.chat.id, format!("查询失败: {}", e))
-                .await?;
-        }
-    }
     Ok(())
 }
 
