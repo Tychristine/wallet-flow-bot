@@ -53,6 +53,7 @@ async fn main() {
     if !config.POLYGON_RPC_URL.is_empty() && !config.POLYGON_MONITOR_ADDRESSES.is_empty() {
         let mut polygon_rx = polygon_service::start_monitor(
             &config.POLYGON_RPC_URL,
+            &config.POLYGON_WSS_URL,
             &config.POLYGON_MONITOR_ADDRESSES,
         )
         .expect("Polygon 监听服务启动失败");

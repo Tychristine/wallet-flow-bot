@@ -103,23 +103,8 @@ impl TronMonitor {
             last_timestamp
         );
 
-        // 心跳计数
-        let heartbeat_secs: f64 = 60.0;
-        let polls_per_heartbeat = (heartbeat_secs / self.poll_interval_secs).ceil() as u64;
-        let mut poll_count: u64 = 0;
-
         loop {
             sleep(Duration::from_secs_f64(self.poll_interval_secs)).await;
-            poll_count += 1;
-
-            // 周期性心跳
-            if poll_count.is_multiple_of(polls_per_heartbeat) {
-                info!(
-                    "Tron 心跳: cursor={} ({})",
-                    last_timestamp,
-                    time_format_gmt8(last_timestamp)
-                );
-            }
 
             // 拉取 TRC-20 转账
             match self.fetch_and_process_trc20(last_timestamp, &tx).await {
@@ -354,7 +339,6 @@ impl TronMonitor {
         }
     }
 
-    ///  状态持久化
     async fn resolve_last_timestamp(&self) -> i64 {
         // 3*19 = 57
         chrono::Utc::now().timestamp_millis() - 60_000

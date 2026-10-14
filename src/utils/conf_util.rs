@@ -16,6 +16,7 @@ struct FileConfig {
     bot_token: Option<String>,
     admin_id: Option<String>,
     polygon_rpc_url: Option<String>,
+    polygon_wss_url: Option<String>,
     polygon_monitor_addresses: Option<String>,
 }
 
@@ -32,6 +33,7 @@ pub struct Config {
     pub BOT_TOKEN: String,
     pub USERADMIN_ID: String,
     pub POLYGON_RPC_URL: String,
+    pub POLYGON_WSS_URL: String,
     pub POLYGON_MONITOR_ADDRESSES: String,
 }
 
@@ -77,6 +79,8 @@ impl Config {
         }
 
         let polygon_rpc_url = file_cfg.polygon_rpc_url.unwrap_or_default();
+        // 可选字段：配置后 Polygon 走 WSS 订阅，留空则沿用轮询
+        let polygon_wss_url = file_cfg.polygon_wss_url.unwrap_or_default();
         let polygon_addrs = file_cfg.polygon_monitor_addresses.unwrap_or_default();
         // 缺配置异常抛出
         if !missing.is_empty() {
@@ -96,6 +100,7 @@ impl Config {
             BOT_TOKEN: bot_token,
             USERADMIN_ID: admin_id,
             POLYGON_RPC_URL: polygon_rpc_url,
+            POLYGON_WSS_URL: polygon_wss_url,
             POLYGON_MONITOR_ADDRESSES: polygon_addrs,
         };
         CONFIG
